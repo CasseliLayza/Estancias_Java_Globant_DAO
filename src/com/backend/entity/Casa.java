@@ -2,11 +2,11 @@ package com.backend.entity;
 
 import java.util.Date;
 
-public class Casas {
+public class Casa {
     private int idCasa;
     private String calle;
     private int numero;
-    private String codigoPostal;;
+    private String codigoPostal;
     private String ciudad;
     private Date fechaDesde;
     private Date fechaHasta;
@@ -14,10 +14,10 @@ public class Casas {
     private double precioHabitacion;
     private String tipoVivienda;
 
-    public Casas() {
+    public Casa() {
     }
 
-    public Casas(String calle, int numero, String codigoPostal, String ciudad, Date fechaDesde, Date fechaHasta, int tiempoMinimo, double precioHabitacion, String tipoVivienda) {
+    public Casa(String calle, int numero, String codigoPostal, String ciudad, Date fechaDesde, Date fechaHasta, int tiempoMinimo, double precioHabitacion, String tipoVivienda) {
         this.calle = calle;
         this.numero = numero;
         this.codigoPostal = codigoPostal;
@@ -29,7 +29,7 @@ public class Casas {
         this.tipoVivienda = tipoVivienda;
     }
 
-    public Casas(int idCasa, String calle, int numero, String codigoPostal, String ciudad, Date fechaDesde, Date fechaHasta, int tiempoMinimo, double precioHabitacion, String tipoVivienda) {
+    public Casa(int idCasa, String calle, int numero, String codigoPostal, String ciudad, Date fechaDesde, Date fechaHasta, int tiempoMinimo, double precioHabitacion, String tipoVivienda) {
         this.idCasa = idCasa;
         this.calle = calle;
         this.numero = numero;
@@ -124,7 +124,7 @@ public class Casas {
 
     @Override
     public String toString() {
-        return "Casas{" +
+        return "Casa{" +
                 "idCasa=" + idCasa +
                 ", calle='" + calle + '\'' +
                 ", numero=" + numero +

@@ -1,6 +1,6 @@
 package com.backend.entity;
 
-public class Clientes {
+public class Cliente {
     private int idCliente;
     private String nombre;
     private String calle;
@@ -10,10 +10,10 @@ public class Clientes {
     private String pais;
     private String email;
 
-    public Clientes() {
+    public Cliente() {
     }
 
-    public Clientes(String nombre, String calle, int numero, String codigoPostal, String ciudad, String pais, String email) {
+    public Cliente(String nombre, String calle, int numero, String codigoPostal, String ciudad, String pais, String email) {
         this.nombre = nombre;
         this.calle = calle;
         this.numero = numero;
@@ -23,7 +23,7 @@ public class Clientes {
         this.email = email;
     }
 
-    public Clientes(int idCliente, String nombre, String calle, int numero, String codigoPostal, String ciudad, String pais, String email) {
+    public Cliente(int idCliente, String nombre, String calle, int numero, String codigoPostal, String ciudad, String pais, String email) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.calle = calle;
@@ -34,11 +34,11 @@ public class Clientes {
         this.email = email;
     }
 
-    public int getId_cliente() {
+    public int getIdCliente() {
         return idCliente;
     }
 
-    public void setId_cliente(int idCliente) {
+    public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -100,7 +100,7 @@ public class Clientes {
 
     @Override
     public String toString() {
-        return "Clientes{" +
+        return "Cliente{" +
                 "idCliente=" + idCliente +
                 ", nombre='" + nombre + '\'' +
                 ", calle='" + calle + '\'' +
