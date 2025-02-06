@@ -8,6 +8,7 @@ public class Casa {
     private int numero;
     private String codigoPostal;
     private String ciudad;
+    private String pais;
     private Date fechaDesde;
     private Date fechaHasta;
     private int tiempoMinimo;
@@ -83,6 +84,14 @@ public class Casa {
         this.ciudad = ciudad;
     }
 
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+    
     public Date getFechaDesde() {
         return fechaDesde;
     }
