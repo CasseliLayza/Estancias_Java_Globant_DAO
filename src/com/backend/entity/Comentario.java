@@ -1,19 +1,19 @@
 package com.backend.entity;
 
-public class Comentarios {
+public class Comentario {
     private int idComentario;
     private int idCasa;
     private String comentario;
 
-    public Comentarios() {
+    public Comentario() {
     }
 
-    public Comentarios(int idCasa, String comentario) {
+    public Comentario(int idCasa, String comentario) {
         this.idCasa = idCasa;
         this.comentario = comentario;
     }
 
-    public Comentarios(int idComentario, int idCasa, String comentario) {
+    public Comentario(int idComentario, int idCasa, String comentario) {
         this.idComentario = idComentario;
         this.idCasa = idCasa;
         this.comentario = comentario;
@@ -45,7 +45,7 @@ public class Comentarios {
 
     @Override
     public String toString() {
-        return "Comentarios{" +
+        return "Comentario{" +
                 "idComentario=" + idComentario +
                 ", idCasa=" + idCasa +
                 ", comentario='" + comentario + '\'' +

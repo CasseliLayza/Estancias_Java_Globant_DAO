@@ -1,5 +1,9 @@
 package com.backend.service;
 
+import com.backend.entity.Estancia;
+
+import java.util.List;
+
 public class EstanciaService {
 
 
@@ -9,46 +13,46 @@ public class EstanciaService {
         this.estanciaDAO = estanciaDAO;
     }
 
-    public Lis<Estancia> listar (){
-        List<Familia> familiaList = estanciaDAO.listarFamilias();
-        System.out.println("familiaList = " + familiaList);
+    public List<Estancia> listarEstancias (){
+        List<Estancia> estancias = estanciaDAO.listarEstancias();
+        System.out.println("estancias = " + estancias);
 
-        return familiaList;
+        return estancias;
 
     }
 
-    public Familia registarFamilia(Familia familia){
+    public Estancia registarEstancia(Estancia familia){
 
-        if(buscarFamilia(familia.getIdFamilia)!=){
-            throw new RuntimeException("No se pudo registrar la Familia pq existe en el sistema");
+        if(buscarEstancia(familia.getIdEstancia())!=null){
+            throw new RuntimeException("No se pudo registrar la Estancia pq existe en el sistema");
         }
 
-        Familia familiaARegistrada = estanciaDAO.registrarFamilia();
-        return familiaARegistrada;
+        Estancia estanciaARegistrada = estanciaDAO.registrarEstancia();
+        return estanciaARegistrada;
     }
 
-    public Familia buscarFamilia(int idFamilia){
-        Familia familiabuscada = estanciaDAO.buscarFamilia();
-        return familiabuscada;
+    public Estancia buscarEstancia(int idEstancia){
+        Estancia estanciaBuscada = estanciaDAO.buscarEstancia();
+        return estanciaBuscada;
     }
 
-    public Familia actualizarFamilia(Familia familia, int idFamilia){
+    public Estancia actualizarEstancia(Estancia estancia, int idEstancia){
 
-        if(buscarFamilia(familia.getIdFamilia)!=){
-            throw new RuntimeException("No se pudo actualizar la Familia pq existe en el sistema");
+        if(buscarEstancia(estancia.getIdEstancia())!=null){
+            throw new RuntimeException("No se pudo actualizar la Estancia pq existe en el sistema");
         }
 
-        Familia familiaActualizada = estanciaDAO.actualizarFamilia();
-        return familiaActualizada;
+        Estancia estanciaActualizada = estanciaDAO.actualizarEstancia();
+        return estanciaActualizada;
 
     }
 
-    public void eliminarFamilia(int idFamilia){
-        if (buscarFamilia(idFamilia)==null) {
-            throw new RuntimeException("No se pudo elimiar la Familia pq no existe en el sistema");
+    public void eliminarEstancia(int idEstancia){
+        if (buscarEstancia(idEstancia)==null) {
+            throw new RuntimeException("No se pudo Estancia la Familia pq no existe en el sistema");
         }
 
-        estanciaDAO.eliminarFamilia(idFamilia);
+        estanciaDAO.eliminarEstancia(idEstancia);
 
     }
 

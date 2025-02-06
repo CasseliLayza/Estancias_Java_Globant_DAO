@@ -1,8 +1,8 @@
 package com.backend.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
-public class Estancias {
+public class Estancia {
     private int idEstancia;
     private int idCliente;
     private int idCasa;
@@ -10,16 +10,16 @@ public class Estancias {
     private Date fechaDesde;
     private Date fechaHasta;
 
-    public Estancias() {
+    public Estancia() {
     }
 
-    public Estancias(String nombreHuesped, Date fechaDesde, Date fechaHasta) {
+    public Estancia(String nombreHuesped, Date fechaDesde, Date fechaHasta) {
         this.nombreHuesped = nombreHuesped;
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
     }
 
-    public Estancias(int idCliente, int idCasa, String nombreHuesped, Date fechaDesde, Date fechaHasta) {
+    public Estancia(int idCliente, int idCasa, String nombreHuesped, Date fechaDesde, Date fechaHasta) {
         this.idCliente = idCliente;
         this.idCasa = idCasa;
         this.nombreHuesped = nombreHuesped;
@@ -77,13 +77,13 @@ public class Estancias {
 
     @Override
     public String toString() {
-        return "Estancias{" +
-                "fechaDesde=" + fechaDesde +
-                ", fechaHasta=" + fechaHasta +
-                ", nombreHuesped='" + nombreHuesped + '\'' +
-                ", idCasa=" + idCasa +
+        return "Estancia{" +
+                "idEstancia=" + idEstancia +
                 ", idCliente=" + idCliente +
-                ", idEstancia=" + idEstancia +
+                ", idCasa=" + idCasa +
+                ", nombreHuesped='" + nombreHuesped + '\'' +
+                ", fechaDesde=" + fechaDesde +
+                ", fechaHasta=" + fechaHasta +
                 '}';
     }
 }
