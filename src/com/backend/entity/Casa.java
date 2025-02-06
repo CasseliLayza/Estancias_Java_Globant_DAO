@@ -11,6 +11,7 @@ public class Casa {
     private Date fechaDesde;
     private Date fechaHasta;
     private int tiempoMinimo;
+    private int tiempoMaximo;
     private double precioHabitacion;
     private String tipoVivienda;
 
@@ -102,8 +103,18 @@ public class Casa {
         return tiempoMinimo;
     }
 
+    public int getTiempoMaximo() {
+        return tiempoMaximo;
+    }
+
+    public void setTiempoMaximo(int tiempoMaximo) {
+        this.tiempoMaximo = tiempoMaximo;
+    }
+
     public void setTiempoMinimo(int tiempoMinimo) {
         this.tiempoMinimo = tiempoMinimo;
+
+
     }
 
     public double getPrecioHabitacion() {
