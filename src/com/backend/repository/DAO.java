@@ -1,4 +1,3 @@
 package com.backend.repository;
-
-public interface DAO {
+public abstract class DAO {
 }
