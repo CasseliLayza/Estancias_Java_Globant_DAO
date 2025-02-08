@@ -1,3 +1,4 @@
+![logo](src/main/resources/statics/img/estancias.webp)
 # Proyecto de Reservas de Estancias
 
 ## 📌 Descripción
