@@ -1,4 +1,4 @@
-package com.backend.entity;
+package main.java.com.backend.estancias.entity;
 
 public class Comentario {
     private int idComentario;

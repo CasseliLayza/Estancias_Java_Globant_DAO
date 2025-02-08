@@ -1,4 +1,4 @@
-package com.backend.entity;
+package main.java.com.backend.estancias.entity;
 
 import java.util.Date;
 
@@ -19,27 +19,31 @@ public class Casa {
     public Casa() {
     }
 
-    public Casa(String calle, int numero, String codigoPostal, String ciudad, Date fechaDesde, Date fechaHasta, int tiempoMinimo, double precioHabitacion, String tipoVivienda) {
+    public Casa(String calle, int numero, String codigoPostal, String ciudad, String pais, Date fechaDesde, Date fechaHasta, int tiempoMinimo, int tiempoMaximo, double precioHabitacion, String tipoVivienda) {
         this.calle = calle;
         this.numero = numero;
         this.codigoPostal = codigoPostal;
         this.ciudad = ciudad;
+        this.pais = pais;
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
         this.tiempoMinimo = tiempoMinimo;
+        this.tiempoMaximo = tiempoMaximo;
         this.precioHabitacion = precioHabitacion;
         this.tipoVivienda = tipoVivienda;
     }
 
-    public Casa(int idCasa, String calle, int numero, String codigoPostal, String ciudad, Date fechaDesde, Date fechaHasta, int tiempoMinimo, double precioHabitacion, String tipoVivienda) {
+    public Casa(int idCasa, String calle, int numero, String codigoPostal, String ciudad, String pais, Date fechaDesde, Date fechaHasta, int tiempoMinimo, int tiempoMaximo, double precioHabitacion, String tipoVivienda) {
         this.idCasa = idCasa;
         this.calle = calle;
         this.numero = numero;
         this.codigoPostal = codigoPostal;
         this.ciudad = ciudad;
+        this.pais = pais;
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
         this.tiempoMinimo = tiempoMinimo;
+        this.tiempoMaximo = tiempoMaximo;
         this.precioHabitacion = precioHabitacion;
         this.tipoVivienda = tipoVivienda;
     }
@@ -150,9 +154,11 @@ public class Casa {
                 ", numero=" + numero +
                 ", codigoPostal='" + codigoPostal + '\'' +
                 ", ciudad='" + ciudad + '\'' +
+                ", pais='" + pais + '\'' +
                 ", fechaDesde=" + fechaDesde +
                 ", fechaHasta=" + fechaHasta +
                 ", tiempoMinimo=" + tiempoMinimo +
+                ", tiempoMaximo=" + tiempoMaximo +
                 ", precioHabitacion=" + precioHabitacion +
                 ", tipoVivienda='" + tipoVivienda + '\'' +
                 '}';
