@@ -91,7 +91,7 @@ public class Casa {
     public void setPais(String pais) {
         this.pais = pais;
     }
-    
+
     public Date getFechaDesde() {
         return fechaDesde;
     }

@@ -1,3 +1,4 @@
+// src/com/backend/entity/Comentario.java
 package com.backend.entity;
 
 public class Comentario {
