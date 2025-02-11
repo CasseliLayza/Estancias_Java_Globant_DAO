@@ -10,10 +10,11 @@ public class FamiliaService {
     private final FamiliaDAO familiaDAO;
 
     public FamiliaService() {
-        this.familiaDAO = new FamiliaDAO();;
+        this.familiaDAO = new FamiliaDAO();
+        ;
     }
 
-    public List<Familia> listarFamilias () throws Exception {
+    public List<Familia> listarFamilias() throws Exception {
         List<Familia> familias = familiaDAO.listarFamilias();
         for (Familia familia : familias) {
             System.out.println("familia = " + familia);
@@ -27,7 +28,7 @@ public class FamiliaService {
     public Familia registrarFamilia(Familia familia) throws Exception {
 
         System.out.println("familiaARegistrar = " + familia);
-        if (familiaDAO.buscarFamiliaByName(familia.getNombre())){
+        if (familiaDAO.buscarFamiliaByName(familia.getNombre())) {
             throw new RuntimeException("No se pudo registrar la familia pq ya existe el sistema");
         }
         Familia familiaRegistrada = familiaDAO.registrarFamilia(familia);
@@ -41,27 +42,55 @@ public class FamiliaService {
         System.out.println("familiabuscada = " + familiabuscada);
         return familiabuscada;
     }
-    
+
     public Familia actualizarFamilia(Familia familia, int idFamilia) throws Exception {
 
-        if(buscarFamilia(idFamilia).getIdFamilia()==0){
+        if (buscarFamilia(idFamilia).getIdFamilia() == 0) {
             throw new RuntimeException("No se pudo actualizar la Familia pq no existe en el sistema");
         }
 
-        Familia familiaActualizada = familiaDAO.actualizarFamilia(familia,idFamilia);
+        Familia familiaActualizada = familiaDAO.actualizarFamilia(familia, idFamilia);
         System.out.println("familiaActualizada = " + familiaActualizada);
         return familiaActualizada;
-        
+
     }
 
     public void eliminarFamilia(int idFamilia) throws Exception {
-        if (buscarFamilia(idFamilia).getIdFamilia()==0) {
+        if (buscarFamilia(idFamilia).getIdFamilia() == 0) {
             throw new RuntimeException("No se pudo eliminar la Familia pq no existe en el sistema");
         }
 
         familiaDAO.eliminarFamilia(idFamilia);
         System.out.println("Familia eliminada con id = " + idFamilia);
 
+    }
+
+    public List<Familia> familiasMas2HijosMaximoEadIferiorMax10() throws Exception {
+
+        List<Familia> familias = familiaDAO.listarFamilias()
+                .stream().filter(f -> f.getNumHijos() >= 3 && f.getEdadMinina() <= 10)
+                .toList();
+
+        System.out.println("||||||||||||||||||||familiasMas2HijosMaximoEadIferiorMax10|||||||||||||||||||||||");
+        for (Familia familia : familias) {
+            System.out.println("familia = " + familia);
+        }
+
+        return familias;
+
+    }
+
+
+    public List<Familia> familiasHotmail() throws Exception {
+        List<Familia> familias =familiaDAO.listarFamilias()
+                .stream().filter(f-> f.getEmail().contains("hotmail"))
+                .toList();
+
+        System.out.println("||||||||||||||||||||familiasHotmail|||||||||||||||||||||||");
+        for (Familia familia:familias) {
+            System.out.println("familia = " + familia);
+        }
+        return familias;
     }
 
 }

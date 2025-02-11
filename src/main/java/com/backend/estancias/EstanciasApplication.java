@@ -148,28 +148,16 @@ public class EstanciasApplication {
 */
 
             //Buscar y listar aquellas familias que tienen al menos 3 hijos, y con edad máxima inferior a 10 años.
-            List<Familia> familiasMas2HijosMaximoEadIferiorMax10 =familiaService.listarFamilias()
-                    .stream().filter(f->f.getNumHijos()>=3&& f.getEdadMinina()<=10)
-                    .toList();
-
             System.out.println("||||||||||||||||||||familiasMas2HijosMaximoEadIferiorMax10|||||||||||||||||||||||");
-            for (Familia familia:familiasMas2HijosMaximoEadIferiorMax10) {
-                System.out.println("familia = " + familia);
-            }
+            familiaService.familiasMas2HijosMaximoEadIferiorMax10();
 
             // Buscar y listar las casas disponibles para el periodo comprendido entre el 1 de agosto de 2025 y el 31 de agosto de 2025 en Reino Unido.
             System.out.println("||||||||||||||||||||buscarCasasPorPeriodoServ|||||||||||||||||||||||");
             casaService.buscarCasasPorPeriodoServ();
 
             //Buscar y listar  todas aquellas familias cuya dirección de email sea Hotmail.
-            List<Familia> familiasHotmail =familiaService.listarFamilias()
-                    .stream().filter(f-> f.getEmail().contains("hotmail"))
-                    .toList();
-
             System.out.println("||||||||||||||||||||familiasHotmail|||||||||||||||||||||||");
-            for (Familia familia:familiasHotmail) {
-                System.out.println("familia = " + familia);
-            }
+            familiaService.familiasHotmail();
 
             //Consulta la BD para que te devuelva aquellas casas disponibles a partir de una fecha dada y un número de días específico.
             System.out.println("||||||||||||||||||||casasApartirDeUnaFechaHastaNumeroDeDiasEspecifico|||||||||||||||||||||||");
@@ -198,6 +186,10 @@ public class EstanciasApplication {
             //Buscar y listar aquellas casas del Reino Unido de las que se ha dicho de ellas (comentarios) que están ‘limpias’.
             System.out.println("||||||||||||||||||||obtnercasasReinoUnioComentadasComoLimpias|||||||||||||||||||||||");
             casaService.obtnerCasasReinoUnioComentadasComoLimpias();
+
+            //Insertar nuevos datos en la tabla estancias verificando la disponibilidad de las fechas.
+            System.out.println("||||||||||||||||||||||||registerVerified||||||||||||||||||||||||||");
+            Estancia estanciaRegistrada = estanciaService.registrarEstancia(estanciaARegistrar);
 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
