@@ -188,11 +188,16 @@ public class EstanciasApplication {
             estanciaService.buscarEstanciaByCliente(1);
 
             //Crear un método para incrementar el precio por día. El mismo debe recibir como parámetro el % de aumento. En esta ocasión, debido a la devaluación de la libra esterlina con respecto al euro se desea incrementar el precio por día en un 5% de todas las casas del Reino Unido. Mostrar los precios actualizados.
+            System.out.println("||||||||||||||||||||incrementarPrecioByDia|||||||||||||||||||||||");
+            casaService.incrementarPrecioByDiaCasas(5.0);
 
             //Obtener el número de casas que existen para cada uno de los países diferentes.
+            System.out.println("||||||||||||||||||||obtenerNumeroCasasByPais|||||||||||||||||||||||");
+            casaService.obtenerNumeroCasasByPais();
 
             //Buscar y listar aquellas casas del Reino Unido de las que se ha dicho de ellas (comentarios) que están ‘limpias’.
-
+            System.out.println("||||||||||||||||||||obtnercasasReinoUnioComentadasComoLimpias|||||||||||||||||||||||");
+            casaService.obtnerCasasReinoUnioComentadasComoLimpias();
 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());

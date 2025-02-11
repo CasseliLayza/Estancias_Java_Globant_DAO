@@ -1,11 +1,15 @@
 package main.java.com.backend.estancias.service;
 
 import main.java.com.backend.estancias.entity.Casa;
+import main.java.com.backend.estancias.entity.Comentario;
 import main.java.com.backend.estancias.repository.ext.CasaDAO;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CasaService {
@@ -121,4 +125,53 @@ public class CasaService {
     }
 
 
+    public void incrementarPrecioByDiaCasas(double porcentajeIncremento) throws Exception {
+
+        List<Casa> casas = listarCasas().stream()
+                .filter(c -> "Reino Unido".equals(c.getPais()))
+                .peek(c -> c.setPrecioHabitacion(c.getPrecioHabitacion() * (1 + (porcentajeIncremento / 100)))).toList();
+
+        System.out.println("Casa incremento precio dia:  " + porcentajeIncremento + "%");
+        for (
+                Casa casa : casas) {
+            System.out.println("casa = " + casa);
+        }
+    }
+
+
+    public void obtenerNumeroCasasByPais() throws Exception {
+
+        Map<String, Long> casasPorPais = listarCasas().stream()
+                .collect(Collectors.groupingBy(Casa::getPais, Collectors.counting()));
+
+        casasPorPais.forEach((pais, cantidad) ->
+                System.out.println("País: " + pais + " - Número de casas: " + cantidad));
+    }
+
+
+    public void obtnerCasasReinoUnioComentadasComoLimpias() throws Exception {
+
+        List<Casa> casas = listarCasas().stream()
+                .filter(c -> "Reino Unido".equals(c.getPais())).collect(Collectors.toList());
+
+        ComentarioService comentarioService = new ComentarioService();
+
+        List<Casa> casasLimpias = casas.stream()
+                .filter(casa -> {
+                    try {
+                        Comentario comentario = comentarioService.buscarComentario(casa.getIdCasa());
+                        return comentario != null && comentario.getComentario().contains("limpia");
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .collect(Collectors.toList());
+
+        System.out.println("obtnerCasasReinoUnioComentadasComoLimpias!!!!!!!!!!!!!!!!!!!!!");
+        for (Casa casasLimpia : casasLimpias) {
+            System.out.println("casasLimpia = " + casasLimpia);
+        }
+
+
+    }
 }
