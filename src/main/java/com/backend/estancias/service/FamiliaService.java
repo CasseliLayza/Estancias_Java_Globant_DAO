@@ -1,6 +1,5 @@
 package main.java.com.backend.estancias.service;
 
-import main.java.com.backend.estancias.entity.Estancia;
 import main.java.com.backend.estancias.entity.Familia;
 import main.java.com.backend.estancias.repository.ext.FamiliaDAO;
 
@@ -8,20 +7,20 @@ import java.util.List;
 
 public class FamiliaService {
 
-    private FamiliaDAO familiaDAO;
+    private final FamiliaDAO familiaDAO;
 
     public FamiliaService() {
         this.familiaDAO = new FamiliaDAO();;
     }
 
     public List<Familia> listarFamilias () throws Exception {
-        List<Familia> familiaList = familiaDAO.listarFamilias();
-        for (Familia familia : familiaList) {
+        List<Familia> familias = familiaDAO.listarFamilias();
+        for (Familia familia : familias) {
             System.out.println("familia = " + familia);
         }
 
 
-        return familiaList;
+        return familias;
 
     }
 
@@ -31,9 +30,9 @@ public class FamiliaService {
         if (familiaDAO.buscarFamiliaByName(familia.getNombre())){
             throw new RuntimeException("No se pudo registrar la familia pq ya existe el sistema");
         }
-        Familia familiaARegistrada = familiaDAO.registrarFamilia(familia);
-        System.out.println("familiaARegistrada = " + familiaARegistrada);
-        return familiaARegistrada;
+        Familia familiaRegistrada = familiaDAO.registrarFamilia(familia);
+        System.out.println("familiaARegistrada = " + familiaRegistrada);
+        return familiaRegistrada;
     }
 
     public Familia buscarFamilia(int idFamilia) throws Exception {
@@ -46,7 +45,7 @@ public class FamiliaService {
     public Familia actualizarFamilia(Familia familia, int idFamilia) throws Exception {
 
         if(buscarFamilia(idFamilia).getIdFamilia()==0){
-            throw new RuntimeException("No se pudo actualizar la Familia pq existe en el sistema");
+            throw new RuntimeException("No se pudo actualizar la Familia pq no existe en el sistema");
         }
 
         Familia familiaActualizada = familiaDAO.actualizarFamilia(familia,idFamilia);
@@ -57,7 +56,7 @@ public class FamiliaService {
 
     public void eliminarFamilia(int idFamilia) throws Exception {
         if (buscarFamilia(idFamilia).getIdFamilia()==0) {
-            throw new RuntimeException("No se pudo elimiar la Familia pq no existe en el sistema");
+            throw new RuntimeException("No se pudo eliminar la Familia pq no existe en el sistema");
         }
 
         familiaDAO.eliminarFamilia(idFamilia);

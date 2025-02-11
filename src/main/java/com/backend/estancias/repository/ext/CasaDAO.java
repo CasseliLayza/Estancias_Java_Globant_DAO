@@ -4,6 +4,7 @@ import main.java.com.backend.estancias.entity.Casa;
 import main.java.com.backend.estancias.repository.DAO;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,19 +41,7 @@ public class CasaDAO extends DAO {
         List<Casa> casas = new ArrayList<>();
         while (resultSet.next()) {
             Casa casa = new Casa();
-            casa.setIdCasa(resultSet.getInt("id_casa"));
-            casa.setCalle(resultSet.getString("calle"));
-            casa.setNumero(resultSet.getInt("numero"));
-            casa.setCodigoPostal(resultSet.getString("codigo_postal"));
-            casa.setCiudad(resultSet.getString("ciudad"));
-            casa.setPais(resultSet.getString("pais"));
-            casa.setFechaDesde(resultSet.getDate("fecha_desde"));
-            casa.setFechaHasta(resultSet.getDate("fecha_hasta"));
-            casa.setTiempoMinimo(resultSet.getInt("tiempo_minimo"));
-            casa.setTiempoMaximo(resultSet.getInt("tiempo_maximo"));
-            casa.setPrecioHabitacion(resultSet.getFloat("precio_habitacion"));
-            casa.setTipoVivienda(resultSet.getString("tipo_vivienda"));
-
+            setUpCasa(casa);
             casas.add(casa);
         }
 
@@ -60,24 +49,14 @@ public class CasaDAO extends DAO {
         return casas;
     }
 
+
     public Casa buscarCasa(int idCasa) throws Exception {
         String sql = "SELECT id_casa, calle, numero, codigo_postal, ciudad, pais, fecha_desde, fecha_hasta, tiempo_minimo, tiempo_maximo, precio_habitacion, tipo_vivienda FROM casas WHERE id_casa=" + idCasa;
         consultarDataBase(sql);
 
         Casa casa = new Casa();
         while (resultSet.next()) {
-            casa.setIdCasa(resultSet.getInt("id_casa"));
-            casa.setCalle(resultSet.getString("calle"));
-            casa.setNumero(resultSet.getInt("numero"));
-            casa.setCodigoPostal(resultSet.getString("codigo_postal"));
-            casa.setCiudad(resultSet.getString("ciudad"));
-            casa.setPais(resultSet.getString("pais"));
-            casa.setFechaDesde(resultSet.getDate("fecha_desde"));
-            casa.setFechaHasta(resultSet.getDate("fecha_hasta"));
-            casa.setTiempoMinimo(resultSet.getInt("tiempo_minimo"));
-            casa.setTiempoMaximo(resultSet.getInt("tiempo_maximo"));
-            casa.setPrecioHabitacion(resultSet.getFloat("precio_habitacion"));
-            casa.setTipoVivienda(resultSet.getString("tipo_vivienda"));
+            setUpCasa(casa);
         }
 
         desconectarDataBase();
@@ -94,18 +73,7 @@ public class CasaDAO extends DAO {
 
         Casa casa = new Casa();
         while (resultSet.next()) {
-            casa.setIdCasa(resultSet.getInt("id_casa"));
-            casa.setCalle(resultSet.getString("calle"));
-            casa.setNumero(resultSet.getInt("numero"));
-            casa.setCodigoPostal(resultSet.getString("codigo_postal"));
-            casa.setCiudad(resultSet.getString("ciudad"));
-            casa.setPais(resultSet.getString("pais"));
-            casa.setFechaDesde(resultSet.getDate("fecha_desde"));
-            casa.setFechaHasta(resultSet.getDate("fecha_hasta"));
-            casa.setTiempoMinimo(resultSet.getInt("tiempo_minimo"));
-            casa.setTiempoMaximo(resultSet.getInt("tiempo_maximo"));
-            casa.setPrecioHabitacion(resultSet.getFloat("precio_habitacion"));
-            casa.setTipoVivienda(resultSet.getString("tipo_vivienda"));
+            setUpCasa(casa);
         }
 
         desconectarDataBase();
@@ -139,6 +107,47 @@ public class CasaDAO extends DAO {
         String sql = "DELETE from casas WHERE id_casa=" + idCasa;
         insertarModificarEliminarDataBase(sql);
         desconectarDataBase();
+    }
+
+    public List<Casa> listarCasasPorPeriodo(String pais, String fecha_desde, String fecha_hasta) throws Exception {
+        List<Casa> casas = new ArrayList<>();
+        String sql = "SELECT * FROM casas WHERE pais = ? AND fecha_desde >= ? AND fecha_hasta <= ?";
+
+        prepareStatementInsertarModificarEliminarDataBase(sql);
+        preparedStatement.setString(1, pais);
+        preparedStatement.setString(2, fecha_desde);
+        preparedStatement.setString(3, fecha_hasta);
+
+        System.out.println("!!!11111!!!!!!!!!!!!!");
+        resultSet=preparedStatement.executeQuery();
+        while (resultSet.next()) {
+        Casa casa = new Casa();
+            setUpCasa(casa);
+            casas.add(casa);
+        }
+
+        System.out.println("casas = " + casas);
+
+        desconectarDataBase();
+        return casas;
+
+
+    }
+
+
+    private void setUpCasa(Casa casa) throws SQLException {
+        casa.setIdCasa(resultSet.getInt("id_casa"));
+        casa.setCalle(resultSet.getString("calle"));
+        casa.setNumero(resultSet.getInt("numero"));
+        casa.setCodigoPostal(resultSet.getString("codigo_postal"));
+        casa.setCiudad(resultSet.getString("ciudad"));
+        casa.setPais(resultSet.getString("pais"));
+        casa.setFechaDesde(resultSet.getDate("fecha_desde"));
+        casa.setFechaHasta(resultSet.getDate("fecha_hasta"));
+        casa.setTiempoMinimo(resultSet.getInt("tiempo_minimo"));
+        casa.setTiempoMaximo(resultSet.getInt("tiempo_maximo"));
+        casa.setPrecioHabitacion(resultSet.getFloat("precio_habitacion"));
+        casa.setTipoVivienda(resultSet.getString("tipo_vivienda"));
     }
 
 }

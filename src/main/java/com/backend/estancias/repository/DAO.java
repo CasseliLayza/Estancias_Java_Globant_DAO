@@ -10,9 +10,9 @@ public abstract class DAO {
     protected PreparedStatement preparedStatement = null;
     private final String HOST = "127.0.0.1";
     private final String PORT = "3306";
-    private final String USER = "xxxx";
-    private final String PASSWORD = "xxxx";
-    private final String DATABASE = "xxxxxxxx";
+    private final String USER = "root";
+    private final String PASSWORD = "root";
+    private final String DATABASE = "estancias_exterior";
     private final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private final String ZONA = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
 
